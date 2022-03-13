@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+	<div class="column">
+		<h1>Welcome to the Alliterator!</h1>
+		<form method="post" action={% url 'submit' %}>
+			{% csrf_token %}
+			<div class="mb-3">	
+				<label for="word1" class="form-label">Word 1</label>
+				<input class="form-control" name="word1" placeholder="Enter word 1" />
+			</div>
+			<div class="mb-3">
+				<label for="word2" class="form-label">Word 2</label>
+				<input type="text" class="form-control" name="word2" placeholder="Enter word 2" />
+			</div>
+			<input type="submit" class="btn btn-primary" value="Submit" />
+		</form>
+	</div>
+</div>
+{% endblock content %}
