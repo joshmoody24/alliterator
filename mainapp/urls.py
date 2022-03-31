@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('submit/', views.submit, name='submit'),
     path('results/<str:word1>/<str:word2>/', views.results, name='results'),
+    path('error/<str:message>/', views.error, name="error")
 ]

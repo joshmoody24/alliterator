@@ -15,12 +15,18 @@ def submit(request):
         return redirect('/')
     return redirect('results', word1=word1.lower(), word2=word2.lower())
 
+def error(request, message):
+    context = { "message": message }
+    return render(request, "error.html", context)
+
 def results(request, word1='', word2=''):
 
     # convert the words into alliterations
-    synonyms = getSynonyms(word1, word2)
-    alliterations = getAlliterations(synonyms)
-
+    try:
+        synonyms = getSynonyms(word1, word2)
+        alliterations = getAlliterations(synonyms)
+    except Exception as e:
+        return redirect("error", str(e))
     # sort the alliterations alphabetically
     alliterations = {key: alliterations[key] for key in sorted(alliterations)}
 

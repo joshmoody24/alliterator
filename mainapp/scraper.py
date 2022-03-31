@@ -25,7 +25,10 @@ def getSynonyms(word1, word2):
             # Create a Beautiful Soup Object
             soup = BeautifulSoup(webpage, "html.parser")
             container = soup.find('div', {'data-testid': 'word-grid-container'})
-            ul = container.find('ul')
+            try:
+                ul = container.find('ul')
+            except:
+                raise Exception("No synonyms found for word \"" + word + "\"")
             for li in ul:
                 words.append(li.get_text())
         elif(SITE == "merriam-webster.com"):
@@ -56,9 +59,7 @@ def getSynonyms(word1, word2):
     return synonyms
 
 def getAlliterations(synonyms):
-
     word1, word2 = list(synonyms)[0], list(synonyms)[1]
-
     # dict where a char points to all alliterations starting with that char
     alliterations = {}
 
