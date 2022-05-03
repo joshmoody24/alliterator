@@ -1,57 +1,72 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="row">
+<div class="row mt-4">
 	<div class="col">
 		<h1>Welcome to the Alliterator!</h1>
 		<p>
 			This app is an <strong>alliteration generator</strong>. It takes two words and finds synonyms of those words that start with the <strong>same letter</strong>.
 		</p>
 
-		<hr>
+		<ul class="list-group mb-3">
+			<li class="list-group-item"><strong>"Tough Guy"</strong> becomes <strong>"Brawny Brother"</strong></li>
+			<li class="list-group-item"><strong>"Funny Picture"</strong> becomes <strong>"Entertaining Engraving"</strong></li>
+			<li class="list-group-item"><strong>"Boring Meeting"</strong> becomes <strong>"Repetitious Rendezvous"</strong></li>
+			<li class="list-group-item"><strong>"Ice Cream"</strong> becomes <strong>"Permafrost Paste"</strong></li>
+		  </ul>
+  </div>
+</div>
 
-		<p>
-			<strong>"Tough Guy"</strong> becomes <strong>"Brawny Brother"</strong>
-		</p>
-		<p>
-			<strong>"Funny Picture"</strong> becomes <strong>"Entertaining Engraving"</strong>
-		</p>
-		<p>
-			<strong>"Boring Meeting"</strong> becomes <strong>"Repetitious Rendezvous"</strong>
-		</p>
-		<p>
-			<strong>"Ice Cream"</strong> becomes <strong>"Permafrost Paste"</strong>
-		</p>
-		
-		<hr>
-
-		<p>
-			Sometimes you get <strong>meaningless garbage</strong>, but every once in a while you find something <strong>absolutely hilarious</strong>.
-		</p>
-		<p>
-			In other words, sometimes the results are <strong>trivial trash</strong>, but sometimes they are <strong>positively priceless</strong>.
-		</p>
-		<p>The <strong>worthless waste</strong> occasionally becomes <strong>unquestionably uproarious</strong>.</p>
-
-		<hr>
+<div class="row">
+	<div class="col-md-4">
+		<div class="card p-3 my-2">
+			<blockquote class="blockquote mb-0">
+				<p class="mb-0">You often get <em>meaningless garbage</em>, but sometimes it is <em>absolutely hilarious</em>.
+				</p>
+				<footer class="blockquote-footer mt-2"><cite title="Source Title">Josh Moody</cite></footer>
+			  </blockquote>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="card p-3 my-2">
+			<blockquote class="blockquote mb-0">
+				<p class="mb-0">Sometimes the results are <em>trivial trash</em>, but other times they are <em>positively priceless</em>.
+				</p>
+				<footer class="blockquote-footer mt-2"><cite title="Source Title">Josh Moody</cite></footer>
+			  </blockquote>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="card p-3 my-2">
+			<blockquote class="blockquote mb-0">
+				<p class="mb-0">Sometimes the <em>worthless waste</em> is <em>unquestionably uproarious</em>.
+				</p>
+				<footer class="blockquote-footer mt-2"><cite title="Source Title">Josh Moody</cite></footer>
+			  </blockquote>
+		</div>
 	</div>
 </div>
+
+
+
+		
 <div class="row">
 	<div class="col-md-8 col-lg-6">
-
-		<h2>Try Out the Alliterator!</h2>
-		<form method="post" action={% url 'submit' %}>
+		<div class="card p-3 shadow rounded">
+		<h5 class="card-title">Try Out the Alliterator!</h5>
+		<h6 class="card-subtitle mb-2 text-muted">We know you'll love it</h6>
+		<form class="mt-1" method="post" action={% url 'submit' %}>
 			{% csrf_token %}
 			<div class="mb-3">	
-				<label for="word1" class="form-label">First Word</label>
+				<label for="word1" class="form-label card-text">First Word</label>
 				<input class="form-control" name="word1" placeholder="Enter first word" />
 			</div>
 			<div class="mb-3">
-				<label for="word2" class="form-label">Second Word</label>
+				<label for="word2" class="form-label card-text">Second Word</label>
 				<input type="text" class="form-control" name="word2" placeholder="Enter second word" />
 			</div>
 			<input type="submit" class="btn btn-primary" value="Alliterate!" />
 		</form>
-
+		</div>
 	</div>
 </div>
 {% endblock content %}
