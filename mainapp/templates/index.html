@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="row">
-	<div class="column">
+	<div class="col">
 		<h1>Welcome to the Alliterator!</h1>
 		<p>
 			This app is an <strong>alliteration generator</strong>. It takes two words and finds synonyms of those words that start with the <strong>same letter</strong>.
@@ -33,6 +33,10 @@
 		<p>The <strong>worthless waste</strong> occasionally becomes <strong>unquestionably uproarious</strong>.</p>
 
 		<hr>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-lg-6">
 
 		<h2>Try Out the Alliterator!</h2>
 		<form method="post" action={% url 'submit' %}>
@@ -45,7 +49,7 @@
 				<label for="word2" class="form-label">Second Word</label>
 				<input type="text" class="form-control" name="word2" placeholder="Enter second word" />
 			</div>
-			<input type="submit" class="btn btn-primary" value="Submit" />
+			<input type="submit" class="btn btn-primary" value="Alliterate!" />
 		</form>
 
 	</div>

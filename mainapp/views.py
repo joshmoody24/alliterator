@@ -5,6 +5,9 @@ from .scraper import getSynonyms, getAlliterations
 def index(request):
     return render(request, "index.html")
 
+def about(request):
+    return render(request, "about.html")
+
 def submit(request):
     if(request.method != "POST"):
         return HttpResponse("No form data detected")
