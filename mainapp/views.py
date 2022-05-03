@@ -8,6 +8,9 @@ def index(request):
 def about(request):
     return render(request, "about.html")
 
+def alliterator(request):
+    return render(request, "alliterator.html")
+
 def submit(request):
     if(request.method != "POST"):
         return HttpResponse("No form data detected")
@@ -15,7 +18,7 @@ def submit(request):
     word1 = request.POST.get('word1')
     word2 = request.POST.get('word2')
     if(word1 == '' or word2 == ''):
-        return redirect('/')
+        return redirect(request.POST.get('origin'))
     return redirect('results', word1=word1.lower(), word2=word2.lower())
 
 def error(request, message):

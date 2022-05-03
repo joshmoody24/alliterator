@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}		
+<div class="row mt-1 py-2">
+
+	<div class="col-md-8 col-lg-6">
+		<div class="card p-3 shadow rounded">
+		<h5 class="card-title">Try Out the Alliterator!</h5>
+		<h6 class="card-subtitle mb-2 text-muted">We know you'll love it</h6>
+		<form class="mt-1" method="post" action={% url 'submit' %}>
+			{% csrf_token %}
+			<div class="mb-3">	
+				<label for="word1" class="form-label card-text">First Word</label>
+				<input class="form-control" name="word1" placeholder="Enter first word" />
+			</div>
+			<div class="mb-3">
+				<label for="word2" class="form-label card-text">Second Word</label>
+				<input type="text" class="form-control" name="word2" placeholder="Enter second word" />
+			</div>
+			<input type="hidden" name="origin" value="{% url 'alliterator' %}" />
+			<input type="submit" class="btn btn-danger" value="Alliterate!" />
+		</form>
+		</div>
+	</div>
+</div>
+{% endblock content %}

@@ -7,4 +7,5 @@ urlpatterns = [
     path('results/<str:word1>/<str:word2>/', views.results, name='results'),
     path('error/<str:message>/', views.error, name="error"),
     path('about/', views.about, name='about'),
+    path('alliterator/', views.alliterator, name='alliterator'),
 ]

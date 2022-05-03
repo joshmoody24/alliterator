@@ -52,6 +52,7 @@
 				<label for="word2" class="form-label card-text">Second Word</label>
 				<input type="text" class="form-control" name="word2" placeholder="Enter second word" />
 			</div>
+			<input type="hidden" name="origin" value="{% url 'index' %}" />
 			<input type="submit" class="btn btn-danger" value="Alliterate!" />
 		</form>
 		</div>
