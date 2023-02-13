@@ -70,21 +70,16 @@ def get_alliterations(synonyms1, synonyms2):
 
     # find possible letters the
     # alliterationcan start with
-    letters1 = set()
-    for word in synonyms1:
-        letters1.add(word[0])
-
-    letters2 = set()
-    for word in synonyms2:
-        letters2.add(word[0])
+    letters1 = set([word[0] for word in synonyms1])
+    letters2 = set([word[0] for word in synonyms2])
 
     # find the letters in common
     letters_in_common = letters1.intersection(letters2)
 
     # find words that share those common letters
     for letter in letters_in_common:
-        filtered_word1 = [s for s in synonyms1 if s[0].lower() == letter]
-        filtered_word2 = [s for s in synonyms2 if s[0].lower() == letter]
+        filtered_word1 = [s for s in synonyms1 if s[0] == letter]
+        filtered_word2 = [s for s in synonyms2 if s[0] == letter]
         # generate all possible combinations
         # from the two word lists
         all_combos = product(filtered_word1, filtered_word2)
