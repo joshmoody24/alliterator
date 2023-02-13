@@ -10,13 +10,12 @@ env = environ.Env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
+# converts word into list of synonyms 
 def get_synonyms(word):
 
-    SHOW_ALL = True
-    SITE = "api"
+    SITE = "thesaurus.com"
 
-    headers = {"User-Agent": "Mozilla/5.0 (Linux; U; Android 4.2.2; he-il; NEO-X5-116A Build/JDQ39) AppleWebKit/534.30 ("
-            "KHTML, like Gecko) Version/4.0 Safari/534.30"}
+    headers = {"User-Agent": "Mozilla/5.0 (Linux; U; Android 4.2.2; he-il; NEO-X5-116A Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30"}
 
     words = []
     if(SITE == "thesaurus.com"):

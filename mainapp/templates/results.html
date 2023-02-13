@@ -2,7 +2,7 @@
 {% block content %}
 <h2>Results for "{{word1}} {{word2}}"</h2>
 
-<div class="accordion" id="accordion-results">
+<div class="accordion text-light" id="accordion-results">
 	{% for letter in alliterations %}
 	<div class="accordion-item">
 		<h2 class="accordion-header" id="heading-{{letter}}">
@@ -15,7 +15,7 @@
 			{% for key, value in alliterations.items %}
 				{% if key == letter %}
 					{% for word1, word2 in value %}
-					<p><strong>{{word1 | upper}} {{word2 | upper}}</strong></p>
+					<p class="alliteration-result"><strong>{{word1}} {{word2}}</strong></p>
 					{% endfor %}
 				{% endif %}
 			{% endfor %}
