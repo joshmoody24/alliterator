@@ -10,7 +10,7 @@ env = environ.Env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-def getSynonyms(word):
+def get_synonyms(word):
 
     SHOW_ALL = True
     SITE = "api"
@@ -61,12 +61,16 @@ def getSynonyms(word):
 
     return synonyms
 
-def getAlliterations(synonyms1, synonyms2):
+# converts two lists of words into
+# a list of alliterations
+def get_alliterations(synonyms1, synonyms2):
 
-    # dict where a char points to all alliterations starting with that char
+    # each letter points to the alliterations
+    # that start with that letter
     alliterations = {}
 
-    # find possible letters the alliteration can start with
+    # find possible letters the
+    # alliterationcan start with
     letters1 = set()
     for word in synonyms1:
         letters1.add(word[0])
@@ -75,13 +79,16 @@ def getAlliterations(synonyms1, synonyms2):
     for word in synonyms2:
         letters2.add(word[0])
 
+    # find the letters in common
     letters_in_common = letters1.intersection(letters2)
-    
-    for char in letters_in_common:
-        filtered_word1 = [s for s in synonyms1 if s[0].lower() == char]
-        filtered_word2 = [s for s in synonyms2 if s[0].lower() == char]
-        # generate all possible combinations from the two word lists
-        allCombos = product(filtered_word1, filtered_word2)
-        alliterations[char] = allCombos
+
+    # find words that share those common letters
+    for letter in letters_in_common:
+        filtered_word1 = [s for s in synonyms1 if s[0].lower() == letter]
+        filtered_word2 = [s for s in synonyms2 if s[0].lower() == letter]
+        # generate all possible combinations
+        # from the two word lists
+        all_combos = product(filtered_word1, filtered_word2)
+        alliterations[letter] = all_combos
 
     return alliterations

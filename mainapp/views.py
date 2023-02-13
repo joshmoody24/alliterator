@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .scraper import getSynonyms, getAlliterations
+from .scraper import get_synonyms, get_alliterations
 
 def index(request):
     return render(request, "index.html")
@@ -29,9 +29,9 @@ def results(request, word1='', word2=''):
 
     # convert the words into alliterations
     try:
-        synonyms1 = getSynonyms(word1)
-        synonyms2 = getSynonyms(word2)
-        alliterations = getAlliterations(synonyms1, synonyms2)
+        synonyms1 = get_synonyms(word1)
+        synonyms2 = get_synonyms(word2)
+        alliterations = get_alliterations(synonyms1, synonyms2)
     except Exception as e:
         return redirect("error", str(e))
     # sort the alliterations alphabetically
