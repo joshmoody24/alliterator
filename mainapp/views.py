@@ -29,8 +29,9 @@ def results(request, word1='', word2=''):
 
     # convert the words into alliterations
     try:
-        synonyms = getSynonyms(word1, word2)
-        alliterations = getAlliterations(synonyms)
+        synonyms1 = getSynonyms(word1)
+        synonyms2 = getSynonyms(word2)
+        alliterations = getAlliterations(synonyms1, synonyms2)
     except Exception as e:
         return redirect("error", str(e))
     # sort the alliterations alphabetically
