@@ -69,7 +69,7 @@ def get_alliterations(synonyms1, synonyms2):
     alliterations = {}
 
     # find possible letters the
-    # alliterationcan start with
+    # alliteration can start with
     letters1 = set([word[0] for word in synonyms1])
     letters2 = set([word[0] for word in synonyms2])
 
