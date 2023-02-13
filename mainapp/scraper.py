@@ -1,14 +1,19 @@
 from bs4 import BeautifulSoup
 import requests
-import random
 from itertools import product
+from pathlib import Path
+import environ
+import os
+
+# read variables from the .env file (for the api key)
+env = environ.Env()
+BASE_DIR = Path(__file__).resolve().parent.parent
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 def getSynonyms(word1, word2):
 
     SHOW_ALL = True
-    SITE = "thesaurus.com"
-
-    # num_word1 = input("How many adjectives do you want?")
+    SITE = "api"
 
     headers = {"User-Agent": "Mozilla/5.0 (Linux; U; Android 4.2.2; he-il; NEO-X5-116A Build/JDQ39) AppleWebKit/534.30 ("
             "KHTML, like Gecko) Version/4.0 Safari/534.30"}
@@ -20,9 +25,6 @@ def getSynonyms(word1, word2):
         if(SITE == "thesaurus.com"):
             response = requests.get("https://thesaurus.com/browse/" + word, headers=headers)
             webpage = response.content
-            # Check Status Code (Optional)
-            # print(response.status_code)
-            # Create a Beautiful Soup Object
             soup = BeautifulSoup(webpage, "html.parser")
             container = soup.find('div', {'data-testid': 'word-grid-container'})
             try:
@@ -34,9 +36,6 @@ def getSynonyms(word1, word2):
         elif(SITE == "merriam-webster.com"):
             response = requests.get("https://www.merriam-webster.com/thesaurus/" + word, headers=headers)
             webpage = response.content
-            # Check Status Code (Optional)
-            # print(response.status_code)
-            # Create a Beautiful Soup Object
             soup = BeautifulSoup(webpage, "html.parser")
             container = soup.find_all('ul', {'class': 'mw-list'})
             for ul in container:
@@ -49,11 +48,18 @@ def getSynonyms(word1, word2):
                         if(possible_word.isalpha()):
                             words.append(possible_word)
 
+        elif(SITE == "api"):
+            response = requests.get(f'https://api.api-ninjas.com/v1/thesaurus?word={word}', headers={'X-Api-Key': env("API_KEY")})
+            if response.status_code == requests.codes.ok:
+                words = response.json()['synonyms']
+            else:
+                raise Exception("An error occurred while accessing the API")
+
         for syn in words:
             # WIP
             # avoid anything with multiple words
             # since the second word might not be an alliteration
-            if(' ' in syn.strip()): continue
+            if(' ' in syn.strip() or '_' in syn.strip()): continue
             synonyms[word].append(syn.strip())
 
     return synonyms
